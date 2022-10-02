@@ -18,11 +18,11 @@
 
             <label for="password">Password</label>
             <input type="password" placeholder="" id="password" name="password">
+            <?php echo isset($_GET['link']) ? "<p class='error'>Username or password is incorrect</p>" : "<p class='error'>&nbsp;</p>";?>
 
             <input type="submit" value="Login" id="submit">
-
-            <a href="forgot.php">Forgot Password</a>
-            <a href="register.php">Register</a>
+            <a href="forgot.php" id="forgot">Forgot Password</a>
+            <a href="register.php" id="register">Register</a>
         </form>
     </div>
 </body>
@@ -78,20 +78,25 @@
 
     form a{
         display: inline-block;
-        height: 30px;
+        height: 35px;
         width: 150px;
         background-color: rgba(255,255,255,0.27);
         border-radius: 3px;
         text-align: center;
-        line-height: 30px;
+        line-height: 35px;
         font-size: 14px;
         font-weight: 400;
         text-decoration: none;
         color: #ffffff;
+        margin-top: 20px;
     }
 
-    form a:nth-last-child(){
+    #forgot{
         float: right;
+    }
+
+    #register{
+        float: left;
     }
 
     #submit{
@@ -99,11 +104,18 @@
         width: 100%;
         background-color: #ccd6f6;
         color: #080710;
-        padding: 15px 0;
+        padding: 5px 0;
         font-size: 18px;
         font-weight: 600;
         border-radius: 5px;
         cursor: pointer;
+    }
+
+    .error{
+        font-size: 14px;
+        font-weight: 400;
+        color: #ff3333;
+        margin-top: 10px;
     }
 </style>
 </html>
