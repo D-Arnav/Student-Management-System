@@ -11,13 +11,31 @@
 </head>
 <body>
     <a href="index.php" class="back">Back</a>
-    <div class="transparent-box" style="height:330px">
-        <form action="verify.php?type=forgot" method="post">
+    <div class="transparent-box" style="height:670px">
+        <form action="change.php" method="post">
             <h3>Forgot Password</h3>
             <label for="email">Email</label>
             <input type="email" id="email" name="email">
 
-            <input type="submit" value="Send Email" class="submit">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username">
+
+            <label for="password">New Password</label>
+            <input type="password" id="password" name="password">
+
+            <label for="password">Confirm Password</label>
+            <input type="password" id="password-cf" name="password-cf">
+            
+            <?php
+                if (isset($_GET['link']) && $_GET['link'] == 'fail') {
+                    echo "<p class='error'>Account does not exist</p>";
+                } else if (isset($_GET['link']) && $_GET['link'] == 'error') {
+                    echo "<p class='error'>Passwords do not match</p>";
+                } else {
+                    echo "<p class='error'>&nbsp;</p>";
+                }
+            ?>
+            <input type="submit" value="Reset Password" class="submit">
         </form>
     </div>
 </body>

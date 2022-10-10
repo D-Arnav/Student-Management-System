@@ -11,18 +11,47 @@
 </head>
 <body>
     <a href="index.php" class="back">Back</a>
-    <div class="transparent-box" style="height:360px">
-        <form action="verify.php?type=forgot" method="post">
-            <h3>Verify Email Here</h3>
-            <label for="code">6-digit code</label>
-            <input type="code" id="code" name="code">
-            <!-- Email Verification Code incorrect error here --> <p class='error'>&nbsp;</p>
+    <div class="transparent-box" style="height:490px">
+        <form action="index.php?link=success" method="post">
+            <h3>New Password Here</h3>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password">
 
-            <input type="submit" value="Send Email" class="submit">
+            <label for="password">Confirm Password</label>
+            <input type="password" id="password-cf" name="password-cf">
+            <?php echo "<p>&nbsp;</p>"?>
+
+            <input type="submit" value="Confirm" class="submit">
         </form>
     </div>
 </body>
-<style>
-
-</style>
 </html>
+
+<?php
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $passwordcf = $_POST['password-cf'];
+    $email = $_POST['email'];
+
+    $conn = mysqli_connect("localhost", "root", "", "login");
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
+    $sql = "SELECT * FROM users WHERE username='$username' AND email='$email'";
+
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+
+    if ($row['username'] == $username && $row['email'] == $email) {
+        if ($password == $passwordcf) {
+            $sql = "UPDATE users SET password='$password' WHERE username='$username' AND email='$email'";
+            $result = mysqli_query($conn, $sql);
+            header("Location: index.php?link=success");
+        } else {
+            echo "Password does not match";
+        }
+    } else {
+        echo "Username or Email is incorrect";
+    }
+?>

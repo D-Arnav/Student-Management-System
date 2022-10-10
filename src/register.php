@@ -11,8 +11,8 @@
 </head>
 <body>
     <a href="index.php" class="back">Back</a>
-    <div class="transparent-box" style="height:650px">
-        <form action="verify.php?type=register" method="post">
+    <div class="transparent-box" style="height:670px">
+        <form action="create.php" method="post">
             <h3>Register Here</h3>
             <label for="username">Username</label>
             <input type="text" id="username" name="username">
@@ -26,6 +26,15 @@
             <label for="email">Email</label>
             <input type="email" id="email" name="email">
 
+            <?php
+                if (isset($_GET['link']) && $_GET['link'] == 'exists') {
+                    echo "<p class='error'>Username or email already exists</p>";
+                } else if (isset($_GET['link']) && $_GET['link'] == 'error') {
+                    echo "<p class='error'>Passwords do not match</p>";
+                } else {
+                    echo "<p class='error'>&nbsp;</p>";
+                }
+            ?>
             <input type="submit" value="Send Email" class="submit">
         </form>
     </div>

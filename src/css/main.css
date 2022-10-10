@@ -22,6 +22,7 @@ h3{
     font-weight: 500;
     line-height: 42px;
     text-align: center;
+    margin-top: -10px;
 }
 
 label{
@@ -63,7 +64,7 @@ a:hover {
 }
 
 .transparent-box{
-    height: 520px;
+    height: 510px;
     width: 400px;
     background-color: rgba(255,255,255,0.13);
     position: absolute;
@@ -99,5 +100,18 @@ a:hover {
     font-size: 14px;
     font-weight: 400;
     color: #ff3333;
+    margin-top: 10px;
+}
+
+.success{
+    font-size: 14px;
+    font-weight: 400;
+    color: #47ff33;
+    margin-top: 10px;
+}
+
+.blank{
+    font-size: 14px;
+    font-weight: 400;
     margin-top: 10px;
 }

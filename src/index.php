@@ -18,7 +18,15 @@
 
             <label for="password">Password</label>
             <input type="password" id="password" name="password">
-            <?php echo isset($_GET['link']) ? "<p class='error'>Username or password is incorrect</p>" : "<p class='error'>&nbsp;</p>";?>
+            <?php 
+                if(isset($_GET['link']) && $_GET['link'] == 'error'){
+                    echo "<p class='error'>Username or password is incorrect</p>";
+                } else if(isset($_GET['link']) && $_GET['link'] == 'success'){
+                    echo "<p class='success'>Account created successfully</p>";
+                } else {
+                    echo "<p class='error'>&nbsp;</p>";
+                }
+            ?>
 
             <input type="submit" value="Login" class="submit">
             <a href="forgot.php" id="forgot" style="float: right">Forgot Password</a>
