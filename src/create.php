@@ -7,7 +7,7 @@
     if ($password != $password_cf) {
         header("Location: register.php?link=error");
     } else {
-        $conn = mysqli_connect("localhost", "root", "", "login");
+        $conn = mysqli_connect("localhost", "root", "", "student management");
         if (!$conn) {
             die("Connection failed: " . mysqli_connect_error());
         }

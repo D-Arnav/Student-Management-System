@@ -33,7 +33,7 @@
     $passwordcf = $_POST['password-cf'];
     $email = $_POST['email'];
 
-    $conn = mysqli_connect("localhost", "root", "", "login");
+    $conn = mysqli_connect("localhost", "root", "", "student management");
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }

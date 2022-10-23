@@ -7,7 +7,7 @@
     if ($password != $password_cf) {
         header("Location: forgot.php?link=error");
     } else {
-        $conn = mysqli_connect("localhost", "root", "", "login");
+        $conn = mysqli_connect("localhost", "root", "", "student management");
         if (!$conn) {
             die("Connection failed: " . mysqli_connect_error());
         }
@@ -16,7 +16,7 @@
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
 
-        if ($row['username'] == $username && $row['email'] == $email && $password == $password_cf) {
+        if ($row['username'] == $username && $row['email'] == $email) {
             $sql = "UPDATE users SET password='$password' WHERE username='$username'";
             $result = mysqli_query($conn, $sql);
             header("Location: index.php?link=success");
@@ -24,4 +24,3 @@
             header("Location: forgot.php?link=fail");
         }
     }
-?>

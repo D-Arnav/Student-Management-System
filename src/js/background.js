@@ -1,12 +1,12 @@
 function generateRandomPos(){
-    var x = Math.floor(Math.random() * (window.innerWidth - 200));
-    var y = Math.floor(Math.random() * (window.innerHeight - 200));
+    const x = Math.floor(Math.random() * (window.innerWidth - 200));
+    const y = Math.floor(Math.random() * (window.innerHeight - 200));
     return [x, y];
 }
 
 function checkCollision(X, Y){
-    for (var i = 0; i < X.length; i++){
-        for (var j = i + 1; j < Y.length; j++){
+    for (let i = 0; i < X.length; i++){
+        for (let j = i + 1; j < Y.length; j++){
             if (Math.sqrt(Math.pow(X[i] - X[j], 2) + Math.pow(Y[i] - Y[j], 2)) < 200){
                 return true;
             }
@@ -16,10 +16,10 @@ function checkCollision(X, Y){
 }
 
 function generateNPos(n){
-    var X = [];
-    var Y = [];
+    const X = [];
+    const Y = [];
     while (X.length < n){
-        var pos = generateRandomPos();
+        const pos = generateRandomPos();
         X.push(pos[0]);
         Y.push(pos[1]);
     }
@@ -30,11 +30,12 @@ function generateNPos(n){
 }
 
 function createShapes(n){
-    var pos = generateNPos(n);
-    var X = pos[0];
-    var Y = pos[1];
-    for (var i = 0; i < X.length; i++){
-        var shape = document.createElement('div');
+    let shape;
+    const pos = generateNPos(n);
+    const X = pos[0];
+    const Y = pos[1];
+    for (let i = 0; i < X.length; i++){
+        shape = document.createElement('div');
         shape.className = 'shape';
         shape.style.left = X[i] + 'px';
         shape.style.top = Y[i] + 'px';
@@ -45,7 +46,7 @@ function createShapes(n){
         shape.style.zIndex = '-1';
         document.body.appendChild(shape);
     }
-    var shape = document.getElementsByClassName('shape');
+    shape = document.getElementsByClassName('shape');
     shape[0].style.background = 'linear-gradient(#1845ad, #23a2f6)';
     shape[1].style.background = 'linear-gradient(#ff512f, #f09819)';
     shape[2].style.background = 'linear-gradient(#19f03d, #1cbb78)';

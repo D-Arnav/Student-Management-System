@@ -11,7 +11,7 @@
     $password = $_POST['password'];
 
     // Create connection to the database
-    $conn = mysqli_connect("localhost","root","","login");
+    $conn = mysqli_connect("localhost","root","","student management");
 
     // Check connection
     if (!$conn) {
