@@ -1,35 +1,15 @@
 <?php
-$link = mysqli_connect("localhost", "root", "", "student management");
-
-if($link === false){
-    die("ERROR: Could not connect. " . mysqli_connect_error());
-}
-
-if(isset($_REQUEST["term"])){
-    $sql = "SELECT * FROM student WHERE name LIKE ?";
-
-    if($stmt = mysqli_prepare($link, $sql)){
-        mysqli_stmt_bind_param($stmt, "s", $param_term);
-
-        $param_term = '%' . $_REQUEST["term"] . '%';
-
-        if(mysqli_stmt_execute($stmt)){
-            $result = mysqli_stmt_get_result($stmt);
-
-            if(mysqli_num_rows($result) > 0){
-                while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                    echo "<p>" . $row["name"] . "</p>";
-                }
-            } else{
-                echo "<p>No matches found</p>";
-            }
-        } else{
-            echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-        }
+    $term = $_POST["term"];
+    $query = "SELECT * FROM student WHERE name LIKE '%$term%'";
+    $connection = mysqli_connect("localhost", "root", "", "student management");
+    $result = mysqli_query($connection, $query);
+    while ($row = mysqli_fetch_array($result)) {
+        ?>
+        <tr>
+            <td><?php echo $row["roll_no"] ?></td>
+            <td><?php echo $row["name"] ?></td>
+            <td><input type="checkbox" name="attendance" onclick="mark('<?php echo $row["roll_no"] ?>')"></td>
+        </tr>
+        <?php 
     }
-
-    mysqli_stmt_close($stmt);
-}
-
-// close connection
-mysqli_close($link);
+?>
