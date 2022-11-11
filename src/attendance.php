@@ -258,7 +258,7 @@
             text-align: center;
         }
         button{
-            background: rgba(255,255,255,0.3);
+            background: #fff;
             border: 0;
             padding: 10px 15px;
             color: #000;
