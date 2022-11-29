@@ -5,10 +5,13 @@
 -->
 
 <?php
+    session_start();
     // Check if the username and password match the database
     // If so, redirect to the welcome.php page, otherwise, redirect to the index.php page
     $username = $_POST['username'];
     $password = $_POST['password'];
+    $_SESSION['username'] = $username;
+    $_SESSION['type'] = 'Teacher';
 
     // Create connection to the database
     $conn = mysqli_connect("localhost","root","","student management");

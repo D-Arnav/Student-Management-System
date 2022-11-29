@@ -39,13 +39,10 @@
     <div class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Assignment 1</h2>
+                <h2></h2>
                 <a class="close">X</a>
             </div>
             <div class="modal-body">
-                <p>Q1: What is the difference between a class and an object?</p>
-                <p>Q2: Describe a. Encapsulation b. Inheritance c. Polymorphism</p>
-                <p>Q3: What is the role of a constructor in a class?</p>
             </div>
         </div>
     </div>
@@ -58,15 +55,22 @@
     const modal = document.querySelector(".modal");
 
     const addBtn = document.querySelector(".add");
-    const viewBtn = document.querySelector(".view");
+    const viewBtns = document.getElementsByClassName("view");
 
     const closeBtn = document.querySelector(".close");
 
     addBtn.onclick = function() {
+        changeModalToAdd();
         modal.style.display = "block";
     }
 
-    viewBtn.onclick = function() {
+    viewBtns[0].onclick = function() {
+        changeModal("Assignment 1", ["Q1: What is the difference between a class and an object?", "Q2: Describe a. Encapsulation b. Inheritance c. Polymorphism", "Q3: What is the role of a constructor in a class?"]);
+        modal.style.display = "block";
+    }
+
+    viewBtns[1].onclick = function () {
+        changeModal("Assignment 2", ["Q1: Define Primary Key", "Q2: Illustrate differences between Primary and Foreign Key", "Q3: Define Data, Database, Database Management System"]);
         modal.style.display = "block";
     }
 
@@ -90,8 +94,10 @@
         // Changes the modal completely to the add assignment form
         const modalHeader = document.querySelector(".modal-header h2");
         const modalBody = document.querySelector(".modal-body");
+
         modalHeader.innerText = "Add Assignment";
         modalBody.innerHTML = "";
+    
         const form = document.createElement("form");
         form.setAttribute("action", "assignment.php");
         form.setAttribute("method", "POST");
@@ -102,7 +108,9 @@
         const due = document.createElement("input");
         due.setAttribute("type", "date");
         due.setAttribute("name", "due");
-        const question = document.createElement("input");
+        const question = document.createElement("textarea");
+        question.setAttribute("rows", "4");
+        question.setAttribute("cols", "96");
         question.setAttribute("type", "text");
         question.setAttribute("name", "question");
         question.setAttribute("placeholder", "Question");
@@ -231,7 +239,7 @@
 
     .modal-content{
         width: 50%;
-        height: 50%;
+        height: 65%;
         max-width: 1200px;
         background: rgb(23, 42, 70);
         border-radius: 10px;
@@ -292,6 +300,32 @@
         font-size: 15px;
         color: #fff;
         font-weight: 300;
+    }
+
+    input {
+        height: 50px;
+        width: 100%;
+        background-color: rgba(255,255,255,0.07);
+        border-radius: 3px;
+        padding: 0 10px;
+        margin-top: 6px;
+        font-size: 15px;
+        font-weight: 300;
+    }
+    textarea {
+        display: block;
+        width: 100%;
+        height: 70px;
+        background-color: rgba(255,255,255,0.07);
+        border-radius: 3px;
+        padding: 0 10px;
+        margin-top: 6px;
+        font-size: 15px;
+        font-weight: 300;
+        margin-top: 6px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        resize: none;
     }
 </style>
 </html>
